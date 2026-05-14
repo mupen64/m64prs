@@ -24,7 +24,6 @@ mod inner {
             else {
                 gtk::accelerator_get_label(gdk::Key::from_glib(this.key.get()), this.modifiers.get()).to_string()
             }
-            
         })]
         key: Cell<u32>,
         #[property(get, set)]

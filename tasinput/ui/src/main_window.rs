@@ -2,13 +2,14 @@ use gtk::prelude::*;
 
 macro_rules! refcell_bflags_get {
     ($this:ident, $button:ident) => {
-        |this: &MainWindow| this.button_flags.borrow().contains(GButtonFlags::$button)
+        |$this: &MainWindow| $this.button_flags.borrow().contains(GButtonFlags::$button)
     };
 }
 macro_rules! refcell_bflags_set {
     ($this:ident, $button:ident) => {
-        |this: &MainWindow, value| {
-            this.button_flags
+        |$this: &MainWindow, value| {
+            $this
+                .button_flags
                 .borrow_mut()
                 .set(GButtonFlags::$button, value)
         }
@@ -28,87 +29,87 @@ mod inner {
     #[properties(wrapper_type = super::MainWindow)]
     pub struct MainWindow {
         #[property(
-            name = "dr-pressed", 
+            name = "dr-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, D_RIGHT), 
+            get = refcell_bflags_get!(this, D_RIGHT),
             set = refcell_bflags_set!(this, D_RIGHT)
         )]
         #[property(
-            name = "dl-pressed", 
+            name = "dl-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, D_LEFT), 
+            get = refcell_bflags_get!(this, D_LEFT),
             set = refcell_bflags_set!(this, D_LEFT)
         )]
         #[property(
-            name = "du-pressed", 
+            name = "du-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, D_UP), 
+            get = refcell_bflags_get!(this, D_UP),
             set = refcell_bflags_set!(this, D_UP)
         )]
         #[property(
-            name = "dd-pressed", 
+            name = "dd-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, D_DOWN), 
+            get = refcell_bflags_get!(this, D_DOWN),
             set = refcell_bflags_set!(this, D_DOWN)
         )]
         #[property(
-            name = "start-pressed", 
+            name = "start-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, START), 
+            get = refcell_bflags_get!(this, START),
             set = refcell_bflags_set!(this, START)
         )]
         #[property(
-            name = "z-pressed", 
+            name = "z-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, Z), 
+            get = refcell_bflags_get!(this, Z),
             set = refcell_bflags_set!(this, Z)
         )]
         #[property(
-            name = "b-pressed", 
+            name = "b-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, B), 
+            get = refcell_bflags_get!(this, B),
             set = refcell_bflags_set!(this, B)
         )]
         #[property(
-            name = "a-pressed", 
+            name = "a-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, A), 
+            get = refcell_bflags_get!(this, A),
             set = refcell_bflags_set!(this, A)
         )]
         #[property(
-            name = "cr-pressed", 
+            name = "cr-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, C_RIGHT), 
+            get = refcell_bflags_get!(this, C_RIGHT),
             set = refcell_bflags_set!(this, C_RIGHT)
         )]
         #[property(
-            name = "cl-pressed", 
+            name = "cl-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, C_LEFT), 
+            get = refcell_bflags_get!(this, C_LEFT),
             set = refcell_bflags_set!(this, C_LEFT)
         )]
         #[property(
-            name = "cu-pressed", 
+            name = "cu-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, C_UP), 
+            get = refcell_bflags_get!(this, C_UP),
             set = refcell_bflags_set!(this, C_UP)
         )]
         #[property(
-            name = "cd-pressed", 
+            name = "cd-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, C_DOWN), 
+            get = refcell_bflags_get!(this, C_DOWN),
             set = refcell_bflags_set!(this, C_DOWN)
         )]
         #[property(
-            name = "r-pressed", 
+            name = "r-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, R), 
+            get = refcell_bflags_get!(this, R),
             set = refcell_bflags_set!(this, R)
         )]
         #[property(
-            name = "l-pressed", 
+            name = "l-pressed",
             type = bool,
-            get = refcell_bflags_get!(this, L), 
+            get = refcell_bflags_get!(this, L),
             set = refcell_bflags_set!(this, L)
         )]
         button_flags: RefCell<GButtonFlags>,

@@ -93,7 +93,7 @@ impl VcrState {
                         ))?;
 
                     let st_path = fs::read_dir(self.path.parent().unwrap())?
-                        .filter_map(|entry| {
+                        .find_map(|entry| {
                             let entry = entry.unwrap();
                             if !entry.file_type().is_ok_and(|ty| ty.is_file()) {
                                 return None;
@@ -109,7 +109,6 @@ impl VcrState {
 
                             Some(entry.path())
                         })
-                        .next()
                         .ok_or_else(|| {
                             io::Error::new(
                                 io::ErrorKind::NotFound,
